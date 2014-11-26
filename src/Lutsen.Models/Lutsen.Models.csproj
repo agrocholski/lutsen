@@ -105,6 +105,7 @@
     <Compile Include="AzureResourceGroup.cs" />
     <Compile Include="AzureResourceMetric.cs" />
     <Compile Include="AzureResourceMetricDefinition.cs" />
+    <Compile Include="AzureResourceMonitor.cs" />
     <Compile Include="AzureResourceUsageMetric.cs" />
     <Compile Include="AzureSubscription.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
