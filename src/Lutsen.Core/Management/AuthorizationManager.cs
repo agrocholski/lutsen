@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Lutsen.Credentials
+namespace Lutsen.Core.Management
 {
     public class AuthorizationManager
     {

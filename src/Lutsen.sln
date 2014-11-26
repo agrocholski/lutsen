@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lutsen.Credentials", "Lutse
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lutsen.Console", "Lutsen.Console\Lutsen.Console.csproj", "{11662EC6-AEE6-4039-921F-CE3066338EED}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lutsen.Core", "Lutsen.Core\Lutsen.Core.csproj", "{A2802FEB-093E-4F02-A172-4B818D99E2DC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{11662EC6-AEE6-4039-921F-CE3066338EED}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{11662EC6-AEE6-4039-921F-CE3066338EED}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{11662EC6-AEE6-4039-921F-CE3066338EED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A2802FEB-093E-4F02-A172-4B818D99E2DC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A2802FEB-093E-4F02-A172-4B818D99E2DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A2802FEB-093E-4F02-A172-4B818D99E2DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A2802FEB-093E-4F02-A172-4B818D99E2DC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

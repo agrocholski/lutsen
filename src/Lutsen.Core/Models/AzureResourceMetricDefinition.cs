@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Lutsen.Models
+namespace Lutsen.Core.Models
 {
     public class AzureResourceMetricDefinition
     {
