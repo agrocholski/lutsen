@@ -51,6 +51,33 @@
     <Reference Include="Microsoft.WindowsAzure.Common.NetFramework">
       <HintPath>..\packages\Microsoft.WindowsAzure.Common.1.4.1\lib\net45\Microsoft.WindowsAzure.Common.NetFramework.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.WindowsAzure.Management">
+      <HintPath>..\packages\Microsoft.WindowsAzure.Management.2.0.0\lib\net40\Microsoft.WindowsAzure.Management.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.WindowsAzure.Management.Compute">
+      <HintPath>..\packages\Microsoft.WindowsAzure.Management.Compute.5.0.0\lib\net40\Microsoft.WindowsAzure.Management.Compute.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.WindowsAzure.Management.MediaServices">
+      <HintPath>..\packages\Microsoft.WindowsAzure.Management.MediaServices.2.0.0\lib\net40\Microsoft.WindowsAzure.Management.MediaServices.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.WindowsAzure.Management.Monitoring">
+      <HintPath>..\packages\Microsoft.WindowsAzure.Management.Monitoring.1.0.0\lib\net40\Microsoft.WindowsAzure.Management.Monitoring.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.WindowsAzure.Management.Network">
+      <HintPath>..\packages\Microsoft.WindowsAzure.Management.Network.3.0.0\lib\net40\Microsoft.WindowsAzure.Management.Network.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.WindowsAzure.Management.Scheduler">
+      <HintPath>..\packages\Microsoft.WindowsAzure.Management.Scheduler.3.0.0\lib\net40\Microsoft.WindowsAzure.Management.Scheduler.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.WindowsAzure.Management.Sql">
+      <HintPath>..\packages\Microsoft.WindowsAzure.Management.Sql.3.0.0\lib\net40\Microsoft.WindowsAzure.Management.Sql.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.WindowsAzure.Management.Storage">
+      <HintPath>..\packages\Microsoft.WindowsAzure.Management.Storage.3.0.0\lib\net40\Microsoft.WindowsAzure.Management.Storage.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.WindowsAzure.Management.WebSites">
+      <HintPath>..\packages\Microsoft.WindowsAzure.Management.WebSites.3.0.0\lib\net40\Microsoft.WindowsAzure.Management.WebSites.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
@@ -79,6 +106,7 @@
     <Compile Include="AzureResourceMetric.cs" />
     <Compile Include="AzureResourceMetricDefinition.cs" />
     <Compile Include="AzureResourceUsageMetric.cs" />
+    <Compile Include="AzureSubscription.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
