@@ -73,6 +73,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AzureResource.cs" />
     <Compile Include="AzureResourceEventData.cs" />
     <Compile Include="AzureResourceMetric.cs" />
     <Compile Include="AzureResourceMetricDefinition.cs" />
