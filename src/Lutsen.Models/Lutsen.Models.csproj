@@ -75,6 +75,7 @@
   <ItemGroup>
     <Compile Include="AzureResource.cs" />
     <Compile Include="AzureResourceEventData.cs" />
+    <Compile Include="AzureResourceGroup.cs" />
     <Compile Include="AzureResourceMetric.cs" />
     <Compile Include="AzureResourceMetricDefinition.cs" />
     <Compile Include="AzureResourceUsageMetric.cs" />
