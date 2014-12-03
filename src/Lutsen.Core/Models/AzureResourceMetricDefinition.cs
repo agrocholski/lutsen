@@ -23,6 +23,7 @@ namespace Lutsen.Core.Models
             foreach (var prop in metricDefinition.Properties)
                 Properties.Add(prop.Key, prop.Value);
 
+            Source = metricDefinition;
             ResourceUri = metricDefinition.ResourceUri;
             Unit = metricDefinition.Unit.ToString();
         }
@@ -32,6 +33,7 @@ namespace Lutsen.Core.Models
         public string PrimaryAggregationType { get; set; }
         public Dictionary<string, string> Properties { get; set; }
         public string ResourceUri { get; set; }
+        public MetricDefinition Source { get; set; }
         public string Unit { get; set; }
     }
 }
