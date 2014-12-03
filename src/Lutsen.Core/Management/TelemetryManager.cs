@@ -12,13 +12,13 @@ namespace Lutsen.Core.Management
 {
     public class TelemetryManager
     {
-        public static List<AzureResourceEventData> GetEventData(string token, AzureResource resource, DateTime startTime, DateTime endTime)
+        public static List<AzureResourceEventData> GetEventData(string token, string subscriptionId, string resourceUri, DateTime startTime, DateTime endTime)
         {
             var result = new List<AzureResourceEventData>();
 
-            string filterString = FilterString.Generate<ListEventsForResourceParameters>(eventData => (eventData.EventTimestamp >= startTime) && (eventData.EventTimestamp <= endTime) && (eventData.ResourceUri == resource.Uri));
+            string filterString = FilterString.Generate<ListEventsForResourceParameters>(eventData => (eventData.EventTimestamp >= startTime) && (eventData.EventTimestamp <= endTime) && (eventData.ResourceUri == resourceUri));
 
-            var credentials = CredentialManager.GetCredentials(token, resource.SubscriptionId);
+            var credentials = CredentialManager.GetCredentials(token, subscriptionId);
             InsightsClient client = new InsightsClient(credentials);
 
             EventDataListResponse response = client.EventOperations.ListEvents(filterString, selectedProperties: null);
@@ -31,14 +31,14 @@ namespace Lutsen.Core.Management
             return result;
         }
 
-        public static List<AzureResourceMetricDefinition> GetMetricDefinitions(string token, AzureResource resource)
+        public static List<AzureResourceMetricDefinition> GetMetricDefinitions(string token, string subscriptionId, string resourceUri)
         {
             var result = new List<AzureResourceMetricDefinition>();
 
-            var credentials = CredentialManager.GetCredentials(token, resource.SubscriptionId);
+            var credentials = CredentialManager.GetCredentials(token, subscriptionId);
             InsightsClient client = new InsightsClient(credentials);
 
-            var metricDefinitions = client.MetricDefinitionOperations.GetMetricDefinitionsAsync(resource.Uri, "").Result;
+            var metricDefinitions = client.MetricDefinitionOperations.GetMetricDefinitionsAsync(resourceUri, "").Result;
 
             foreach (var metricDefinition in metricDefinitions.MetricDefinitionCollection.Value)
             {
@@ -48,14 +48,14 @@ namespace Lutsen.Core.Management
             return result;
         }
 
-        public static List<AzureResourceMetric> GetMetrics(string token, AzureResource resource, string filter)
+        public static List<AzureResourceMetric> GetMetrics(string token, string subscriptionId, string resourceUri, string filter)
         {
             var result = new List<AzureResourceMetric>();
 
-            var credentials = CredentialManager.GetCredentials(token, resource.SubscriptionId);
+            var credentials = CredentialManager.GetCredentials(token, subscriptionId);
             InsightsClient client = new InsightsClient(credentials);
 
-            var metrics = client.MetricOperations.GetMetrics(resource.Uri, filter);
+            var metrics = client.MetricOperations.GetMetrics(resourceUri, filter);
 
             foreach (var metric in metrics.MetricCollection.Value)
                 result.Add(new AzureResourceMetric(metric));
