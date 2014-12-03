@@ -9,6 +9,9 @@ namespace Lutsen.Console
 {
     class Program
     {
+        private static DateTime startTime = new DateTime(2014, 11, 1, 0, 0, 0);
+        private static DateTime endTime = new DateTime(2014, 11, 24, 23, 59, 59);
+
         static void Main(string[] args)
         {
             /* In order to run this sample application you must have an Azure Active Directory (AAD) tenant,
@@ -29,11 +32,22 @@ namespace Lutsen.Console
 
             var subscriptions = SubscriptionManager.GetSubscriptions(authToken);
 
-            foreach(var subscription in subscriptions)
+            foreach (var subscription in subscriptions)
             {
+                var resourceGroups = ResourceManager.GetResourceGroups(authToken, subscription.Id);
 
+                foreach (var resourceGroup in resourceGroups)
+                {
+                    foreach (var resource in resourceGroup.Resources)
+                    {
+                        resource.Telemetry.Events = TelemetryManager.GetEventData(authToken, resource.SubscriptionId, resource.Uri, startTime, endTime);
+                        resource.Telemetry.MetricDefinitions = TelemetryManager.GetMetricDefinitions(authToken, resource.SubscriptionId, resource.Uri);
+                        resource.Telemetry.Metrics = TelemetryManager.GetMetrics(authToken, resource.SubscriptionId, resource.Uri, "");
+                        resource.Telemetry.UsageMetrics = TelemetryManager.GetUsageMetrics(authToken, resource.SubscriptionId, resource.Uri, "");
+                    }
+                }
 
-                //todo: make magic happen
+                subscription.ResourceGroups.AddRange(resourceGroups);
             }
 
             System.Console.WriteLine("Press any key to exit...");
