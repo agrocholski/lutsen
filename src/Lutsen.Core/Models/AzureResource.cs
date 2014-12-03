@@ -11,10 +11,7 @@ namespace Lutsen.Core.Models
     {
         public AzureResource()
         {
-            Events = new List<AzureResourceEventData>();
-            MetricDefinitions = new List<AzureResourceMetricDefinition>();
-            Metrics = new List<AzureResourceMetric>();
-            UsageMetrics = new List<AzureResourceUsageMetric>();
+            Telemetry = new AzureResourceTelemetry();
         }
 
         public AzureResource(Resource resource, string subscriptionId, string resourceGroupName)
@@ -30,10 +27,7 @@ namespace Lutsen.Core.Models
         public string Name { get; set; }
         public string Type { get; set; }
         public string Uri { get; set; }
-        public List<AzureResourceEventData> Events { get; set; }
-        public List<AzureResourceMetricDefinition> MetricDefinitions { get; set; }
-        public List<AzureResourceMetric> Metrics { get; set; }
-        public List<AzureResourceUsageMetric> UsageMetrics { get; set; }
+        public AzureResourceTelemetry Telemetry { get; set; }
 
     }
 }

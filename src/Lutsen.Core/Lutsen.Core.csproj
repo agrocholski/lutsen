@@ -110,7 +110,6 @@
     <Compile Include="Management\CredentialManager.cs" />
     <Compile Include="Management\ResourceManager.cs" />
     <Compile Include="Management\SubscriptionManager.cs" />
-    <Compile Include="Management\TelemetryManager.cs" />
     <Compile Include="Models\AzureResource.cs" />
     <Compile Include="Models\AzureResourceEventData.cs" />
     <Compile Include="Models\AzureResourceGroup.cs" />
