@@ -22,7 +22,6 @@ namespace Lutsen.Core.Models
             ResourceGroupName = ResourceGroupName;
             SubscriptionId = subscriptionId;
             Type = resource.Type;
-            Uri = string.Format("subscriptions/{0}/resourceGroups/{1}/providers/{2}/{3}", subscriptionId, resourceGroupName, resource.Type, resource.Name);
         }
 
         public string Id { get; set; }
@@ -30,7 +29,10 @@ namespace Lutsen.Core.Models
         public string ResourceGroupName { get; set; }
         public string SubscriptionId { get; set; }
         public string Type { get; set; }
-        public string Uri { get; set; }
+        public string Uri
+        {
+            get { return string.Format("subscriptions/{0}/resourceGroups/{1}/providers/{2}/{3}", SubscriptionId, ResourceGroupName, Type, Name); }
+        }
         public AzureResourceTelemetry Telemetry { get; set; }
 
     }
