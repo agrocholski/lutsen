@@ -16,7 +16,7 @@ namespace Lutsen.Core.Management
             return credentials;
         }
 
-        public static SubscriptionCloudCredentials GetCredentials(string subscriptionId, string token)
+        public static SubscriptionCloudCredentials GetCredentials(string token, string subscriptionId)
         {
             SubscriptionCloudCredentials credentials = new TokenCloudCredentials(subscriptionId, token);
 

@@ -108,6 +108,7 @@
   <ItemGroup>
     <Compile Include="Management\AuthorizationManager.cs" />
     <Compile Include="Management\CredentialManager.cs" />
+    <Compile Include="Management\ResourceManager.cs" />
     <Compile Include="Management\SubscriptionManager.cs" />
     <Compile Include="Models\AzureResource.cs" />
     <Compile Include="Models\AzureResourceEventData.cs" />
