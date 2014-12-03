@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Lutsen.Credentials
+namespace Lutsen.Core.Management
 {
     public class CredentialManager
     {
