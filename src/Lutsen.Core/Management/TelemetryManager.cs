@@ -77,5 +77,20 @@ namespace Lutsen.Core.Management
 
             return result;
         }
+
+        public static List<AzureResourceUsageMetric> GetUsageMetrics(string token, string subscriptionId, string resourceUri, string filter)
+        {
+            var result = new List<AzureResourceUsageMetric>();
+
+            var credentials = CredentialManager.GetCredentials(token, subscriptionId);
+            InsightsClient client = new InsightsClient(credentials);
+
+            var usageMetrics = client.UsageMetricOperations.List(resourceUri, filter);
+
+            foreach (var usageMetric in usageMetrics.UsageMetricCollection.Value)
+                result.Add(new AzureResourceUsageMetric(usageMetric));
+
+            return result;
+        }
     }
 }
