@@ -27,7 +27,14 @@ namespace Lutsen.Console
 
             var authToken = AuthorizationManager.GetAuthorizationToken(tenantId, appId, appRedirectUri);
 
-            //todo: make magic happen
+            var subscriptions = SubscriptionManager.GetSubscriptions(authToken);
+
+            foreach(var subscription in subscriptions)
+            {
+
+
+                //todo: make magic happen
+            }
 
             System.Console.WriteLine("Press any key to exit...");
             System.Console.ReadLine();
