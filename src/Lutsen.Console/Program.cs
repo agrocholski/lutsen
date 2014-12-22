@@ -9,6 +9,9 @@ namespace Lutsen.Console
 {
     class Program
     {
+        private static string tenantId = "";
+        private static string appId = "";
+        private static string appRedirectUri = "";
         private static DateTime startTime = new DateTime(2014, 11, 1, 0, 0, 0);
         private static DateTime endTime = new DateTime(2014, 11, 24, 23, 59, 59);
 
@@ -19,35 +22,53 @@ namespace Lutsen.Console
              * please read the following article: http://msdn.microsoft.com/en-us/library/azure/dn790557.aspx
              * */
 
-            System.Console.Write("Enter your AAD tenant id: ");
-            var tenantId = System.Console.ReadLine();
-
-            System.Console.Write("Enter your AAD application id: ");
-            var appId = System.Console.ReadLine();
-
-            System.Console.Write("Enter your AAD application redirect Uri: ");
-            var appRedirectUri = System.Console.ReadLine();
-
-            var authToken = AuthorizationManager.GetAuthorizationToken(tenantId, appId, appRedirectUri);
-
-            var subscriptions = SubscriptionManager.GetSubscriptions(authToken);
-
-            foreach (var subscription in subscriptions)
+            try
             {
-                var resourceGroups = ResourceManager.GetResourceGroups(authToken, subscription.Id);
-
-                foreach (var resourceGroup in resourceGroups)
+                if (string.IsNullOrEmpty(tenantId))
                 {
-                    foreach (var resource in resourceGroup.Resources)
-                    {
-                        resource.Telemetry.Events = TelemetryManager.GetEventData(authToken, resource.SubscriptionId, resource.Uri, startTime, endTime);
-                        resource.Telemetry.MetricDefinitions = TelemetryManager.GetMetricDefinitions(authToken, resource.SubscriptionId, resource.Uri);
-                        resource.Telemetry.Metrics = TelemetryManager.GetMetrics(authToken, resource.SubscriptionId, resource.Uri, "");
-                        resource.Telemetry.UsageMetrics = TelemetryManager.GetUsageMetrics(authToken, resource.SubscriptionId, resource.Uri, "");
-                    }
+                    System.Console.Write("Enter your AAD tenant id: ");
+                    tenantId = System.Console.ReadLine();
                 }
 
-                subscription.ResourceGroups.AddRange(resourceGroups);
+                if (string.IsNullOrEmpty(appId))
+                {
+                    System.Console.Write("Enter your AAD application id: ");
+                    appId = System.Console.ReadLine();
+                }
+
+                if (string.IsNullOrEmpty(appRedirectUri))
+                {
+                    System.Console.Write("Enter your AAD application redirect Uri: ");
+                    appRedirectUri = System.Console.ReadLine();
+                }
+
+                var authToken = AuthorizationManager.GetAuthorizationToken(tenantId, appId, appRedirectUri);
+
+                var subscriptions = SubscriptionManager.GetSubscriptions(authToken);
+
+                foreach (var subscription in subscriptions)
+                {
+                    var resourceGroups = ResourceManager.GetResourceGroups(authToken, subscription.Id);
+
+                    foreach (var resourceGroup in resourceGroups)
+                    {
+                        foreach (var resource in resourceGroup.Resources)
+                        {
+                            resource.Telemetry.Events = TelemetryManager.GetEventData(authToken, resource.SubscriptionId, resource.Uri, startTime, endTime);
+                            resource.Telemetry.MetricDefinitions = TelemetryManager.GetMetricDefinitions(authToken, resource.SubscriptionId, resource.Uri);
+                            resource.Telemetry.Metrics = TelemetryManager.GetMetrics(authToken, resource.SubscriptionId, resource.Uri, "");
+                            resource.Telemetry.UsageMetrics = TelemetryManager.GetUsageMetrics(authToken, resource.SubscriptionId, resource.Uri, "");
+                        }
+                    }
+
+                    subscription.ResourceGroups.AddRange(resourceGroups);
+                }
+
+                //todo: do something with the data
+            }
+            catch(Exception ex)
+            {
+                System.Console.WriteLine(ex.Message);
             }
 
             System.Console.WriteLine("Press any key to exit...");
