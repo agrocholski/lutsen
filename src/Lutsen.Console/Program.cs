@@ -42,7 +42,7 @@ namespace Lutsen.Console
                     appRedirectUri = System.Console.ReadLine();
                 }
 
-                var authToken = AuthorizationManager.GetAuthorizationToken(tenantId, appId, appRedirectUri);
+                var authToken = AuthorizationManager.GetAuthorizationTokenInteractive(tenantId, appId, appRedirectUri);
 
                 var subscriptions = SubscriptionManager.GetSubscriptions(authToken);
 

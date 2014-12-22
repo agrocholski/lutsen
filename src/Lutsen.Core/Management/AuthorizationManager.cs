@@ -10,7 +10,7 @@ namespace Lutsen.Core.Management
 {
     public class AuthorizationManager
     {
-        public static string GetAuthorizationToken(string tenantId, string clientId, string redirectUri)
+        public static string GetAuthorizationTokenInteractive(string tenantId, string clientId, string redirectUri)
         {
             AuthenticationResult result = null;
 
