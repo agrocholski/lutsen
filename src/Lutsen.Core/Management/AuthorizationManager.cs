@@ -38,5 +38,34 @@ namespace Lutsen.Core.Management
 
             return token;
         }
+
+        public static string GetAuthorizationTokenPassive(string tenantId, string clientId, string appKey, string redirectUri)
+        {
+            AuthenticationResult result = null;
+
+            var context = new AuthenticationContext(string.Format("https://login.windows.net/{0}", tenantId));
+            var clientCredential = new ClientCredential(clientId, appKey);
+
+            var thread = new Thread(() =>
+            {
+                result = context.AcquireToken(
+                  "https://management.core.windows.net/",
+                  clientCredential);
+            });
+
+                        thread.SetApartmentState(ApartmentState.STA);
+            thread.Name = "AquireTokenThread";
+            thread.Start();
+            thread.Join();
+
+            if (result == null)
+            {
+                throw new InvalidOperationException("Failed to obtain the JWT token");
+            }
+
+            string token = result.AccessToken;
+
+            return token;
+        }
     }
 }
